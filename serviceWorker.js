@@ -2,8 +2,8 @@ const staticDevCoffee = "dev-coffee-site-v1";
 const assets = [
   "/",
   "/index.html",
-  "/images/vinod-logo.png",
-  "/images/vinod.jpg",
+  "/images/logo.png",
+  "/images/lproflourenco1.jpg",
   "https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js",
   "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js",
   "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css",
