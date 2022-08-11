@@ -39,22 +39,10 @@
 				<div class="card-block my-card-body">
 					<div class="container my-container-2">
 						<div class="row">
-							<div class="col-lg-9 col-xs-12 col-sm-12 col-md-9">
+							<div class="col-lg-12 col-xs-12 col-sm-12 col-md-9">
 								<h5 class="text-primary" style="font-weight: bold;">DISCIPLINAS cursadas e ATIVIDADES FINAIS desenvolvidas</h5>
 								<h2>É mais difícil ler <span class="text-danger" style="font-weight: bold;">CÓDIGO</span> do que escrevê-lo.</h2>
 								<div class="divider"></div>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-								<div class="dropdown pull-right">
-									<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-									  Filter Repositories
-									</button>
-									<div class="dropdown-menu">
-									  <a class="dropdown-item filter-repo" data-filter="my" href="#">My Repositories</a>
-									  <a class="dropdown-item filter-repo" data-filter="forked" href="#">Forked</a>
-									  <a class="dropdown-item filter-repo" data-filter="clear" href="#">All</a>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 p-0">
@@ -123,19 +111,7 @@
 		                <li><a href="https://eventos.ifmt.edu.br/" target="_blank">Sistema Integrado de Gestão de Eventos (SIGE)</a></li>
 		            </ul>
 		        </div>
-            	<!--<hr class="clearfix w-100 d-md-none">
-		        <div class="col-md-4 mx-auto">
-		            <h5 class="title mb-4 mt-3 font-bold"></h5>
-		            <ul class="footer-list">
-		            	<li><a href="#">Projetos atuais</a></li>
-		                <li><a href="#">---</a></li>
-		            </ul>
-		        </div>
-				-->
 	        </div>
-	        <!--<div class="row" id="footerLinks">
-	        	
-	        </div>-->
 	    </div>
 
 	    <!--Copyright-->
@@ -153,20 +129,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.90/jsrender.min.js"></script>
 
-    <script type="text/x-jsrender" id="footerLinksTemplate">
-    	{{props footerlist}}
-    	<hr class="clearfix w-100 d-md-none">
-        <!--Second column-->
-        <div class="col-md-3 mx-auto">
-            <h5 class="title mb-4 mt-3 font-bold">{{>key}}</h5>
-            <ul class="footer-list">
-            	{{for prop}}
-                <li><a href="{{:html_url}}">{{:name}}</a></li>
-            	{{/for}}
-            </ul>
-        </div>
-        {{/props}}
-    </script>
+
 
     <script id="vinodReposCardTemplate" type="text/x-jsrender">
 		<div class="col-lg-4 col-xs-12 col-sm-12 col-md-6 p-b-30 forked-{{:fork}}">
