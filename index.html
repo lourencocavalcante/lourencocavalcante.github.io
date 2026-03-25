@@ -203,6 +203,7 @@
         await new Promise(r => setTimeout(r, delay));
     }
 
+    async function startHacking() {
     await typeLine(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ ./deep_scan.sh`, 800);
     
     // 1. Dados Básicos
