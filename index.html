@@ -203,29 +203,46 @@
         await new Promise(r => setTimeout(r, delay));
     }
 
-    async function startHacking() {
-        await typeLine(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ ./scan_visitor.sh`, 800);
-        
-        // Coleta de Dados do Visitante
-        const screenRes = `${window.screen.width}x${window.screen.height}`;
-        const platform = navigator.platform;
-        const cores = navigator.hardwareConcurrency || "N/A";
-        
-        let ipData = { ip: "127.0.0.1", city: "Unknown", org: "Localhost" };
-        try {
-            const response = await fetch('https://ipapi.co/json/');
-            ipData = await response.json();
-        } catch(e) {}
+    await typeLine(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ ./deep_scan.sh`, 800);
+    
+    // 1. Dados Básicos
+    const screenRes = `${window.screen.width}x${window.screen.height}`;
+    const platform = navigator.platform;
+    const cores = navigator.hardwareConcurrency || "N/A";
+    const memory = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Unknown";
+    const lang = navigator.language;
 
-        await typeLine(`<span class="t-warn">AVISO: Vítima localizada na rede!</span>`, 400);
-        await typeLine(`<span class="t-info">> IP PRIVADO:</span> ${ipData.ip}`, 300);
-        await typeLine(`<span class="t-info">> COORDENADAS:</span> ${ipData.city}, ${ipData.region} - ${ipData.country}`, 300);
-        await typeLine(`<span class="t-info">> PROVEDOR:</span> ${ipData.org}`, 300);
-        await typeLine(`<span class="t-info">> OS/PLATAFORMA:</span> ${platform}`, 300);
-        await typeLine(`<span class="t-info">> NÚCLEOS CPU:</span> ${cores} Detectados`, 300);
-        await typeLine(`<span class="t-info">> MONITOR:</span> ${screenRes}`, 300);
-        
-        await typeLine(`<br><span class="text-secondary">// INICIANDO COMUNICAÇÃO CRIPTOGRAFADA...</span>`, 1000);
+    // 2. Tentar pegar GPU
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl');
+    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : "Generic GPU";
+
+    // 3. Tentar pegar Bateria
+    let batteryInfo = "Access Denied";
+    if (navigator.getBattery) {
+        const batt = await navigator.getBattery();
+        batteryInfo = `${Math.round(batt.level * 100)}% (${batt.charging ? 'Charging' : 'Discharging'})`;
+    }
+
+    // 4. API de IP (já temos do seu código anterior)
+    let ipData = { ip: "Scanning...", city: "Unknown", org: "Unknown" };
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        ipData = await response.json();
+    } catch(e) {}
+
+    // Exibição no Terminal com tom "agressivo"
+    await typeLine(`<span class="t-warn">ALVO IDENTIFICADO! INICIANDO DUMP...</span>`, 500);
+    await typeLine(`<span class="t-info">> IP:</span> ${ipData.ip} (${ipData.org})`, 200);
+    await typeLine(`<span class="t-info">> LOCAL:</span> ${ipData.city}, ${ipData.region} - ${ipData.country_name}`, 200);
+    await typeLine(`<span class="t-info">> HARDWARE:</span> ${cores} Cores / ${memory} RAM`, 200);
+    await typeLine(`<span class="t-info">> GPU:</span> ${gpu.split(',')[0]}`, 200);
+    await typeLine(`<span class="t-info">> BATERIA:</span> ${batteryInfo}`, 200);
+    await typeLine(`<span class="t-info">> LINGUAGEM:</span> ${lang}`, 200);
+    await typeLine(`<span class="t-info">> MONITOR:</span> ${screenRes}`, 200);
+    
+    await typeLine(`<br><span class="t-warn">CONEXÃO ESTABELECIDA. BEM-VINDO, PROFESSOR.</span>`, 1000);
 
         const messages = [
             "O futuro não é mais o que costumava ser.",
