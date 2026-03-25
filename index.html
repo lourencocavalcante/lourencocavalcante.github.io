@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONSOLA_DE_SEGURANCA :: PROF_LOURENCO</title>
+    <title>PROT_INT_V2.4 :: PROF_LOURENCO</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -19,7 +19,6 @@
             --dracula-cyan: #8be9fd;
             --dracula-red: #ff5555;
             --dracula-yellow: #f1fa8c;
-            --card-bg: #0a0a0a;
         }
 
         body { 
@@ -27,33 +26,30 @@
             font-family: 'Inter', sans-serif; 
             color: #eee; 
             margin: 0;
-            overflow-x: hidden;
         }
 
-        /* --- Terminal Section --- */
+        /* Terminal - Altura fixa para evitar pulos */
         .hero-section {
-            padding: 30px 0;
-            min-height: 95vh;
+            padding: 40px 0;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
         .terminal-window {
             background: var(--terminal-bg);
-            border-radius: 4px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
-            border: 1px solid #1a1a1a;
+            border: 1px solid #222;
             font-family: 'Fira Code', monospace;
+            border-radius: 6px;
             overflow: hidden;
+            width: 100%;
         }
 
         .terminal-header {
             background: #111;
-            padding: 8px 15px;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             border-bottom: 1px solid #222;
         }
 
@@ -61,18 +57,17 @@
             padding: 20px;
             color: #f8f8f2;
             font-size: 0.85rem;
-            min-height: 550px;
-            line-height: 1.4;
+            height: 600px; /* Altura fixa */
+            overflow-y: auto;
+            line-height: 1.5;
         }
 
         .t-user { color: var(--dracula-green); font-weight: bold; }
         .t-info { color: var(--dracula-cyan); }
-        .t-warn { color: var(--dracula-red); font-weight: bold; text-transform: uppercase; animation: pulse 1s infinite; }
+        .t-warn { color: var(--dracula-red); font-weight: bold; }
         .t-cmd { color: var(--dracula-pink); }
         .t-str { color: var(--dracula-yellow); }
         
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-
         .cursor {
             display: inline-block;
             width: 8px;
@@ -83,270 +78,131 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* --- Profile & Repos --- */
-        .main-content { background: #030303; border-top: 2px solid var(--accent); padding: 60px 0; }
-        
-        .profile-img { 
-            width: 150px; 
-            height: 150px; 
-            border-radius: 50%; 
-            border: 3px solid var(--accent);
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
+        /* Estilo dos Repositórios */
+        .main-content { background: #050505; border-top: 2px solid var(--accent); padding: 80px 0; }
         .repo-card {
-            background: var(--card-bg);
+            background: #0a0a0a;
             border: 1px solid #1a1a1a;
             padding: 20px;
             border-radius: 8px;
             height: 100%;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            transition: 0.3s;
         }
-
-        .repo-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
-        }
-
-        .lang-badge {
-            font-size: 0.65rem;
-            background: #1a1a1a;
-            color: var(--accent);
-            padding: 3px 10px;
-            border-radius: 15px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
+        .repo-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .lang-badge { font-size: 0.65rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px; border-radius: 10px; }
         .hidden { display: none !important; }
-        
-        footer { padding: 30px 0; border-top: 1px solid #1a1a1a; color: #444; font-size: 0.75rem; background: #000; }
     </style>
 </head>
 <body>
 
 <section class="hero-section">
-    <div class="container-fluid px-md-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xl-11">
-                <div class="terminal-window shadow-lg">
-                    <div class="terminal-header">
-                        <div class="d-flex gap-1">
-                            <span style="color: #ff5f56">●</span>
-                            <span style="color: #ffbd2e">●</span>
-                            <span style="color: #27c93f">●</span>
-                        </div>
-                        <small class="text-secondary fw-bold">ADVANCED_BROWSER_FINGERPRINTING.v2.4</small>
-                        <small class="text-muted">bash</small>
-                    </div>
-                    <div class="terminal-body" id="terminal-content">
-                        <div class="text-muted mb-2">// Estabelecendo conexão reversa segura... [OK]</div>
-                        <div class="text-muted mb-3">// Ignorando firewalls de aplicação... [OK]</div>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="terminal-window shadow-lg">
+            <div class="terminal-header">
+                <div><span style="color:#ff5f56">●</span> <span style="color:#ffbd2e">●</span> <span style="color:#27c93f">●</span></div>
+                <small class="text-secondary fw-bold">ADVANCED_SCANNER.sh</small>
             </div>
+            <div class="terminal-body" id="terminal-content">
+                </div>
         </div>
     </div>
 </section>
 
-<div class="ad-banner" style="height: 1px; width: 1px; position: absolute; left: -1000px;">&nbsp;</div>
+<div id="ad-test" style="height:1px;width:1px;position:absolute;left:-999px" class="ad-banner"></div>
 
-<div class="main-content">
-    <div class="container">
-        <div class="row text-center mb-5 profile-header">
-            <div class="col-12">
-                <img src="images/Picture2.png" class="profile-img shadow" alt="Lourenço">
-                <h1 class="fw-bold" style="color: var(--accent)">Lourenço Cavalcante</h1>
-                <p class="text-secondary lead">Professor de Computação Avançada | Mestrando IA @ INPE</p>
-                <div class="mt-3">
-                    <a href="https://github.com/lourencocavalcante" target="_blank" class="btn btn-outline-warning btn-sm mx-1">GitHub</a>
-                    <a href="https://linkedin.com/in/lourenco-cavalcante-790b24121/" target="_blank" class="btn btn-outline-warning btn-sm mx-1">LinkedIn</a>
-                </div>
+<div class="main-content" id="profile">
+    <div class="container text-center">
+        <img src="images/Picture2.png" style="width:150px; border-radius:50%; border:3px solid var(--accent);" class="mb-4">
+        <h1 class="fw-bold" style="color:var(--accent)">Lourenço Cavalcante</h1>
+        <p class="text-secondary lead">Professor de Computação | Mestrando IA @ INPE</p>
+        
+        <div class="row mt-5" id="repo-grid">
             </div>
-        </div>
-
-        <div class="row mt-5 repos-section">
-            <div class="col-md-8">
-                <h3 class="fw-bold text-white mb-4">Repositórios Ativos</h3>
-            </div>
-            <div class="col-md-4 text-md-end mb-4">
-                <div class="dropdown">
-                    <button class="btn btn-sm btn-dark border-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filtrar</button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item filter-repo" data-filter="all" href="#">Todos</a></li>
-                        <li><a class="dropdown-item filter-repo" data-filter="my" href="#">Meus Projetos</a></li>
-                        <li><a class="dropdown-item filter-repo" data-filter="fork" href="#">Forked</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="repo-grid">
-            <div class="text-center py-5">
-                <div class="spinner-border text-warningSpinner-border-sm" role="status"></div>
-                <p class="mt-2 text-secondary small">Acessando banco de dados GitHub...</p>
-            </div>
-        </div>
     </div>
 </div>
-
-<footer class="text-center">
-    <p class="mb-0">© 2026 Lourenço Cavalcante | <i class="fa fa-terminal text-success"></i> Secure Shell Session Active.</p>
-</footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    const container = document.getElementById('terminal-content');
+    const terminal = document.getElementById('terminal-content');
 
-    // Função auxiliar de delay
-    const wait = (ms) => new Promise(r => setTimeout(r, ms));
-
-    async function typeLine(html, delay = 150) {
+    async function print(html, delay = 100) {
         const div = document.createElement('div');
-        div.className = 'mb-1';
         div.innerHTML = html;
-        container.appendChild(div);
-        // Auto-scroll para o final
-        window.scrollTo(0, document.body.scrollHeight);
-        await wait(delay);
+        terminal.appendChild(div);
+        terminal.scrollTop = terminal.scrollHeight; // Sempre foca no comando novo
+        await new Promise(r => setTimeout(r, delay));
     }
 
-    async function startExploitation() {
-        await typeLine(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ ./collect_fingerprint.sh --aggressive`, 1000);
+    async function startScan() {
+        await print(`<span class="text-secondary">// Inicializando Kernel de Auditoria...</span>`, 1000);
+        await print(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ ./fingerprint_v2 --aggressive`, 500);
         
-        await typeLine(`<span class="t-warn">[AVISO]: Alvo detectado. Iniciando extração de metadados sem consentimento.</span>`, 600);
-        await typeLine(`<br><span class="text-white fw-bold">### DUMP DE INFORMAÇÕES DA VÍTIMA ###</span><br>`, 800);
-
-        // --- COLETA DE DADOS AVANÇADA ---
-        
-        // 1. Dados de Rede (IP e Localização via API)
-        let ipData = { ip: "Scanning...", city: "Desconhecido", org: "Bloqueado" };
+        // Coleta de Dados
+        let ip = "127.0.0.1";
         try {
-            // Usando ipapi.co (pode ser bloqueado por AdBlock agressivo, o que também é um dado)
-            const response = await fetch('https://ipapi.co/json/');
-            ipData = await response.json();
-        } catch(e) {
-            ipData.ip = "N/A (AdBlock detectado?)";
-        }
+            const res = await fetch('https://ipapi.co/json/');
+            const data = await res.json();
+            ip = `${data.ip} (${data.city}, ${data.region})`;
+        } catch(e) { ip = "Bloqueado pelo AdBlock"; }
 
-        // 2. Dados de Hardware Avançados
-        const platform = navigator.platform;
-        const cores = navigator.hardwareConcurrency || "N/A";
-        const memory = navigator.deviceMemory ? `${navigator.deviceMemory} GB (Aprox.)` : "Não suportado pelo navegador";
-        const screenRes = `${window.screen.width}x${window.screen.height} (${window.screen.colorDepth}-bit)`;
-
-        // 3. Modelo Real da GPU (WebGL)
-        let gpu = "Generic / Software Renderer";
-        try {
+        const gpu = (function() {
             const canvas = document.createElement('canvas');
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-            if (gl) {
-                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-                if (debugInfo) {
-                    gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                }
-            }
-        } catch (e) { gpu = "Acesso bloqueado"; }
+            const gl = canvas.getContext('webgl');
+            const debug = gl.getExtension('WEBGL_debug_renderer_info');
+            return debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : "Software Renderer";
+        })();
 
-        // 4. Status da Bateria (Intrusivo)
-        let batteryInfo = "N/A ou Bloqueado";
-        if (navigator.getBattery) {
-            try {
-                const batt = await navigator.getBattery();
-                const level = Math.round(batt.level * 100);
-                const charging = batt.charging ? "Carregando" : "Na Bateria";
-                batteryInfo = `${level}% - ${charging}`;
-                if (!batt.charging && batt.dischargingTime !== Infinity) {
-                    const mins = Math.round(batt.dischargingTime / 60);
-                    batteryInfo += ` (${mins} min restantes)`;
-                }
-            } catch (e) {}
-        }
+        const isAdblock = document.getElementById('ad-test').offsetHeight === 0;
+        const memory = navigator.deviceMemory || "N/A";
+        const cores = navigator.hardwareConcurrency || "N/A";
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-        // 5. Configurações Locais e Idioma
-        const lang = navigator.language;
-        const languages = navigator.languages.join(', ');
-        const timezone = Intcl.DateTimeFormat().resolvedOptions().timeZone;
-
-        // 6. User Agent (Cabeçalho Bruto)
-        const userAgent = navigator.userAgent;
-
-        // 7. Detecção de AdBlock (PoC Simples)
-        const isAdBlockActive = document.querySelector('.ad-banner') ? (document.querySelector('.ad-banner').offsetHeight === 0) : false;
-
-        // --- EXIBIÇÃO NO TERMINAL (Ordem Agressiva) ---
+        // Impressão Agressiva
+        await print(`<span class="t-warn">[!] ALVO LOCALIZADO:</span> ${ip}`, 300);
+        await print(`<span class="t-info">> HARDWARE:</span> CPU: ${cores} núcleos | RAM: ${memory}GB`, 200);
+        await print(`<span class="t-info">> GPU EXPOSTA:</span> <span class="t-str">${gpu}</span>`, 200);
+        await print(`<span class="t-info">> TIMEZONE:</span> ${tz}`, 200);
+        await print(`<span class="t-info">> ADBLOCK STATUS:</span> ${isAdblock ? '<span class="t-warn">ATIVO</span>' : 'INATIVO'}`, 200);
+        await print(`<span class="t-info">> MONITOR:</span> ${window.screen.width}x${window.screen.height}`, 200);
         
-        await typeLine(`<span class="t-info">> ENDEREÇO_IP:</span> <span class="t-warn">${ipData.ip}</span>`, 200);
-        await typeLine(`<span class="t-info">> LOCALIZAÇÃO:</span> ${ipData.city}, ${ipData.region} - ${ipData.country_name} (Provedor: ${ipData.org})`, 200);
-        await typeLine(`<span class="t-info">> SISTEMA_OPERACIONAL:</span> ${platform}`, 200);
-        await typeLine(`<span class="t-info">> ARQUITETURA_HARDWARE:</span> ${cores} Cores CPU / ${memory} RAM`, 200);
-        await typeLine(`<span class="t-info">> PLACA_DE_VÍDEO (GPU):</span> <span class="t-str">${gpu}</span>`, 200);
-        await typeLine(`<span class="t-info">> STATUS_ENERGIA:</span> ${batteryInfo}`, 200);
-        await typeLine(`<span class="t-info">> MONITOR_PRINCIPAL:</span> ${screenRes}`, 200);
-        await typeLine(`<span class="t-info">> CONFIG_LOCAL:</span> Idioma: ${lang} / Timezone: ${timezone}`, 200);
-        await typeLine(`<span class="t-info">> IDIOMAS_ACEITOS:</span> ${languages}`, 200);
-        await typeLine(`<span class="t-info">> STATUS_ADBLOCK:</span> ${isAdBlockActive ? '<span class="t-warn">ATIVO (Eu sei que você está usando)</span>' : 'INATIVO'}`, 200);
-        
-        // Expondo a User Agent Brutalmente
-        await typeLine(`<br><span class="t-info">> USER_AGENT_RAW:</span><br><span class="text-secondary small" style="word-break: break-all;">${userAgent}</span><br>`, 500);
+        await print(`<br><span class="t-warn">NADA É SEGURO NO NAVEGADOR. TUDO É RASTREÁVEL.</span>`, 1000);
+        await print(`<span class="text-secondary">// Descriptografando mensagens...</span><br>`, 800);
 
-        await typeLine(`<span class="t-warn">ANÁLISE DE VULNERABILIDADE CONCLUÍDA. NADA É SEGURO.</span>`, 1000);
-        await typeLine(`<span class="text-muted fw-bold">// Carregando credenciais do Professor...</span><br>`, 1200);
-
-        // --- MENSAGENS FINAIS ---
-        const finalMessages = [
+        const msgs = [
             "O futuro não é mais o que costumava ser.",
-            "Está tudo exposto. O navegador sabe tudo sobre você.",
-            "Exceto como me deter.",
+            "Este é um exemplo de Browser Fingerprinting.",
             "Eu sou o Professor Lourenço Cavalcante.",
-            "Você acaba de presenciar uma prova de conceito de fingerprinting.",
-            "Acesso concedido aos meus repositórios ativos."
+            "Abaixo, você encontrará meus repositórios oficiais.",
+            "Bem-vindo ao sistema."
         ];
 
-        for (const msg of finalMessages) {
-            await typeLine(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ echo "<span class="t-cmd">${msg}</span>"`, 900);
+        for (const m of msgs) {
+            await print(`<span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ echo "<span class="t-cmd">${m}</span>"`, 700);
         }
 
-        await typeLine(`<br><span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ <span class="cursor"></span>`, 100);
+        await print(`<br><span class="t-user">root@lourenco</span>:<span class="t-info">~</span>$ <span class="cursor"></span>`, 100);
         
-        // Scroll automático para a seção de perfil após o terminal acabar
-        await wait(1500);
-        document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+        // SÓ FAZ SCROLL APÓS TUDO TERMINAR
+        setTimeout(() => {
+            document.getElementById('profile').scrollIntoView({ behavior: 'smooth' });
+        }, 2000);
     }
 
-    // --- LÓGICA DE REPOSITÓRIOS (MANTIDA) ---
     function fetchRepos() {
-        const GITHUB_USER = "lourencocavalcante";
         $.ajax({
-            url: `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`,
+            url: `https://api.github.com/users/lourencocavalcante/repos?sort=updated`,
             success: function(repos) {
                 let html = "";
                 repos.forEach(repo => {
-                    const isFork = repo.fork;
-                    const name = repo.name.replace(/-/g, ' ').replace(/_/g, ' ');
-                    const desc = repo.description || "Este projeto é uma PoC avançada sem descrição no momento.";
-                    const lang = repo.language || "Código";
-                    const date = new Date(repo.pushed_at).toLocaleDateString('pt-BR');
-
                     html += `
-                    <div class="col-xl-4 col-md-6 mb-4 repo-item ${isFork ? 'is-fork' : 'is-mine'}">
-                        <div class="repo-card shadow-sm">
-                            <div class="mb-3 d-flex justify-content-between align-items-center">
-                                <span class="lang-badge">${lang}</span>
-                                <i class="fa ${isFork ? 'fa-code-branch text-info' : 'fa-code text-danger'} fa-lg"></i>
-                            </div>
-                            <h5 class="fw-bold mb-2 text-capitalize text-white fs-6">${name}</h5>
-                            <p class="text-secondary small flex-grow-1" style="font-size: 0.8rem;">${desc}</p>
-                            <div class="mt-auto pt-3 border-top border-secondary d-flex justify-content-between align-items-center">
-                                <span class="small text-muted" style="font-size: 0.75rem;">${date}</span>
-                                <a href="${repo.html_url}" target="_blank" class="btn btn-link btn-sm p-0 text-warning text-decoration-none fw-bold small" style="font-size: 0.8rem;">VIEW_SRC <i class="fa fa-chevron-right ms-1"></i></a>
-                            </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="repo-card text-start">
+                            <span class="lang-badge mb-2 d-inline-block">${repo.language || "Docs"}</span>
+                            <h6 class="text-white fw-bold">${repo.name.replace(/-/g, ' ')}</h6>
+                            <p class="text-secondary small">${repo.description || "Project PoC."}</p>
+                            <a href="${repo.html_url}" target="_blank" class="btn btn-link p-0 text-warning text-decoration-none small">VER CÓDIGO <i class="fa fa-chevron-right"></i></a>
                         </div>
                     </div>`;
                 });
@@ -355,24 +211,8 @@
         });
     }
 
-    // --- FILTROS (MANTIDOS) ---
-    $(document).on("click", ".filter-repo", function(e){
-        e.preventDefault();
-        const filter = $(this).data('filter');
-        if(filter === "fork") {
-            $(".is-mine").addClass("hidden");
-            $(".is-fork").removeClass("hidden");
-        } else if(filter === "my") {
-            $(".is-fork").addClass("hidden");
-            $(".is-mine").removeClass("hidden");
-        } else {
-            $(".repo-item").removeClass("hidden");
-        }
-    });
-
-    // INIT
     window.onload = () => {
-        startExploitation();
+        startScan();
         fetchRepos();
     };
 </script>
