@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lourenço Cavalcante | IA & Computação</title>
+    <title>Lourenço Cavalcante | Portfólio IA & Dev</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -11,232 +11,313 @@
 
     <style>
         :root {
-            --accent: #D4AF37; /* Dourado */
-            --bg-dark: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --text-gray: #b0b0b0;
+            --accent: #D4AF37;
+            --bg-dark: #0a0a0a;
+            --terminal-bg: #0d0d0d;
+            --card-bg: #ffffff;
+            --dracula-green: #50fa7b;
+            --dracula-pink: #ff79c6;
+            --dracula-yellow: #f1fa8c;
+            --dracula-cyan: #8be9fd;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
+            background-color: #f8f9fa;
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
+            color: #333;
         }
 
-        /* Navbar Glassmorphism */
-        .navbar {
-            background: rgba(15, 15, 15, 0.85) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 1rem 0;
-        }
-
-        .navbar-brand img {
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
-        }
-
-        /* Terminal Section */
-        .wallpaper {
-            height: 70vh;
+        /* --- Terminal Section --- */
+        .hero-section {
+            background: var(--bg-dark);
+            padding: 60px 0;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
         }
 
-        .console {
-            font-family: 'Fira Code', monospace;
-            background: #000;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #333;
+        .terminal-window {
+            background: var(--terminal-bg);
+            border-radius: 10px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .prompt p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* Profile Card */
-        .myprofile {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 50px;
-            margin-top: -50px;
-            margin-bottom: 80px;
             border: 1px solid #333;
-            transition: transform 0.3s ease;
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
         }
 
-        .profile-img-container {
-            text-align: center;
+        .terminal-header {
+            background: #222;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
         }
 
-        .vinod {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 5px solid var(--accent);
-            object-fit: cover;
-            transition: all 0.4s ease;
-            cursor: pointer;
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 25px;
+            color: #f8f8f2;
+            font-size: 1rem;
+            min-height: 350px;
         }
 
-        .vinod:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Typography */
-        h2 { color: var(--accent); font-weight: 700; }
-        h5 { color: var(--text-gray); font-weight: 300; margin-bottom: 12px; font-size: 1rem; }
-        
-        /* Social Icons Modernizados */
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #2a2a2a;
-            color: #fff !important;
-            margin-right: 12px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .social-link:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f0f0f; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        .t-user { color: var(--dracula-green); font-weight: bold; }
+        .t-host { color: var(--dracula-cyan); }
+        .t-cmd { color: var(--dracula-pink); }
+        .t-str { color: var(--dracula-yellow); }
 
         .cursor {
             display: inline-block;
-            width: 10px;
-            height: 20px;
-            background: var(--accent);
-            animation: blink 1s infinite;
+            width: 8px;
+            height: 18px;
+            background: #fff;
+            animation: blink 1s step-end infinite;
             vertical-align: middle;
+            margin-left: 5px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- Profile Card --- */
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            margin-top: -60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: none;
+            overflow: hidden;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .profile-img:hover { transform: scale(1.05); }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            color: #333;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .social-link:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+
+        /* --- Repositories --- */
+        .repo-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+            transition: 0.3s;
+        }
+        .repo-card:hover { 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+            border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
-        @media (max-width: 768px) {
-            .myprofile { text-align: center; padding: 30px; }
-            .console { font-size: 0.8rem; margin: 0 15px; }
+        .lang-badge {
+            font-size: 0.7rem;
+            background: #eee;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
         }
+
+        footer { background: #1a1a1a; color: #888; padding: 40px 0; font-size: 0.9rem; }
+
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="images/vinod-logo.png" alt="Logo" style="height: 50px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="repositories.html">GitHub</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Disciplinas IFTO</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="wallpaper">
-        <div class="container">
-            <div class="console shadow-lg">
-                <div class="prompt" id="terminal-content">
-                    </div>
-            </div>
-        </div>
-    </section>
-
+<section class="hero-section">
     <div class="container">
-        <div class="row myprofile align-items-center">
-            <div class="col-lg-4 profile-img-container">
-                <img class="vinod shadow" src="images/Picture2.jpg" onclick="location.href='repositories.html'"/>
-            </div>
-            <div class="col-lg-8">
-                <div class="mt-4 mt-lg-0">
-                    <h2>Lourenço Cavalcante</h2>
-                    <h5><i class="fa-solid fa-briefcase me-2"></i>Professor Efetivo @ IFTO (desde 2016)</h5>
-                    <h5><i class="fa-solid fa-graduation-cap me-2"></i>Mestrando em Computação Aplicada / IA (INPE)</h5>
-                    <h5><i class="fa-solid fa-code me-2"></i>Especialista em Informática na Educação</h5>
-                    
-                    <div class="mt-4">
-                        <p class="text-secondary small text-uppercase fw-bold">Conecte-se comigo</p>
-                        <a href="https://github.com/lourencocavalcante" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/lourenco-cavalcante-790b24121/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.instagram.com/lourenco.cavalcante7/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="terminal-body" id="terminal-content">
+                        <div class="text-secondary small mb-3">Last login: Tue Mar 24 2026 on console</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <footer class="py-4 text-center text-secondary">
-        <small>&copy; 2026 Lourenço Cavalcante. Desenvolvido com foco em IA.</small>
-    </footer>
+<div class="container mb-5">
+    <div class="card profile-card p-4 p-md-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="images/Picture2.png" class="profile-img shadow" alt="Lourenço Cavalcante">
+            </div>
+            <div class="col-md-8 mt-4 mt-md-0">
+                <h5 class="text-primary fw-bold text-uppercase small mb-1">Catedrático & Pesquisador</h5>
+                <h1 class="fw-bold mb-3">Lourenço Cavalcante</h1>
+                <p class="text-muted">
+                    Professor Efetivo no <strong>IFTO</strong> • Mestrando em Computação Aplicada (<strong>INPE</strong>) 
+                    com ênfase em IA • Especialista em Informática na Educação.
+                </p>
+                <div class="mt-4">
+                    <a href="https://github.com/lourencocavalcante" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/lourenco-cavalcante-790b24121/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/lourenco.Sample/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container py-5">
+    <div class="row mb-4 align-items-end">
+        <div class="col-md-8">
+            <h2 class="fw-bold">Repositórios GitHub</h2>
+            <p class="text-muted">Projetos acadêmicos e códigos de disciplinas.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <div class="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">Filtrar</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item filter-repo" data-filter="all" href="#">Todos</a></li>
+                    <li><a class="dropdown-item filter-repo" data-filter="my" href="#">Meus Projetos</a></li>
+                    <li><a class="dropdown-item filter-repo" data-filter="fork" href="#">Forked</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        const lines = [
-            "O futuro não é mais o que costumava ser.",
-            "Está tão cheio, ninguém mais vem aqui...",
-            "Exceto uma pessoa.",
-            "Quem visita este lugar regularmente?",
-            "Robôs? Bots de IA?",
-            "Não. É o nosso Professor:",
-            "Lourenço Cavalcante"
-        ];
+    <div class="row" id="repo-grid">
+        <div class="text-center py-5">
+            <div class="spinner-border text-warning" role="status"></div>
+            <p class="mt-2 text-muted">Buscando API do GitHub...</p>
+        </div>
+    </div>
+</div>
 
-        const terminal = document.getElementById('terminal-content');
+<footer>
+    <div class="container text-center">
+        <p class="mb-0">© 2026 Professor Lourenço Cavalcante. Construído com foco em IA e Educação.</p>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // --- LÓGICA DO TERMINAL ---
+    const terminalLines = [
+        "O futuro não é mais o que costumava ser.",
+        "Está tão cheio, ninguém mais vem aqui...",
+        "Exceto uma pessoa.",
+        "Quem visita este lugar regularmente?",
+        "Robôs? Bots de IA?",
+        "Não. É o nosso Professor:",
+        "Lourenço Cavalcante"
+    ];
+
+    async function runTerminal() {
+        const container = document.getElementById('terminal-content');
         
-        async function typeWriter(text, element) {
-            const promptSpan = document.createElement('p');
-            promptSpan.innerHTML = `<span style="color:#00FF00;">root@lourenco</span>:<span style="color:lightblue;">~</span>$ echo "`;
-            element.appendChild(promptSpan);
+        for (const line of terminalLines) {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'mb-2';
+            lineDiv.innerHTML = `<span class="t-user">root@lourenco</span>:<span class="t-host">~</span>$ <span class="t-cmd">echo</span> <span class="t-str">"</span>`;
+            container.appendChild(lineDiv);
 
-            for (let i = 0; i < text.length; i++) {
-                promptSpan.innerHTML += text.charAt(i);
-                await new Promise(r => setTimeout(r, 40));
+            const strSpan = document.createElement('span');
+            strSpan.className = 't-str';
+            lineDiv.appendChild(strSpan);
+
+            // Efeito de digitação
+            for (let char of line) {
+                strSpan.textContent += char;
+                await new Promise(r => setTimeout(r, 25 + Math.random() * 30));
             }
-            promptSpan.innerHTML += `"`;
+            strSpan.textContent += '"';
+            await new Promise(r => setTimeout(r, 500));
         }
+        
+        const finalPrompt = document.createElement('div');
+        finalPrompt.innerHTML = `<span class="t-user">root@lourenco</span>:<span class="t-host">~</span>$ <span class="cursor"></span>`;
+        container.appendChild(finalPrompt);
+    }
 
-        async function initTerminal() {
-            for (const line of lines) {
-                await typeWriter(line, terminal);
-                await new Promise(r => setTimeout(r, 400));
+    // --- LÓGICA DO GITHUB ---
+    const GITHUB_USER = "lourencocavalcante";
+
+    function fetchRepos() {
+        $.ajax({
+            url: `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`,
+            success: function(repos) {
+                let html = "";
+                repos.forEach(repo => {
+                    const isFork = repo.fork;
+                    const name = repo.name.replace(/-/g, ' ').replace(/_/g, ' ');
+                    const desc = repo.description || "Project under development.";
+                    const lang = repo.language || "Docs";
+                    const date = new Date(repo.pushed_at).toLocaleDateString('pt-BR');
+
+                    html += `
+                    <div class="col-md-4 mb-4 repo-item ${isFork ? 'is-fork' : 'is-mine'}">
+                        <div class="repo-card d-flex flex-column">
+                            <div class="mb-2">
+                                <i class="fa ${isFork ? 'fa-code-branch text-info' : 'fa-code text-danger'} me-2"></i>
+                                <span class="lang-badge">${lang}</span>
+                            </div>
+                            <h5 class="fw-bold mb-2 text-capitalize">${name}</h5>
+                            <p class="text-muted small flex-grow-1">${desc}</p>
+                            <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                                <span class="small text-secondary">${date}</span>
+                                <a href="${repo.html_url}" target="_blank" class="btn btn-link btn-sm p-0 text-warning fw-bold text-decoration-none">CODE <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+                $("#repo-grid").html(html);
             }
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor';
-            terminal.appendChild(cursor);
-        }
+        });
+    }
 
-        window.onload = initTerminal;
-    </script>
+    // --- FILTROS ---
+    $(document).on("click", ".filter-repo", function(e){
+        e.preventDefault();
+        const filter = $(this).data('filter');
+        if(filter === "fork") {
+            $(".is-mine").addClass("hidden");
+            $(".is-fork").removeClass("hidden");
+        } else if(filter === "my") {
+            $(".is-fork").addClass("hidden");
+            $(".is-mine").removeClass("hidden");
+        } else {
+            $(".repo-item").removeClass("hidden");
+        }
+    });
+
+    // INIT
+    window.onload = () => {
+        runTerminal();
+        fetchRepos();
+    };
+</script>
+
 </body>
 </html>
