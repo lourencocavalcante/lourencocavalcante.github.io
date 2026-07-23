@@ -1,0 +1,8 @@
+[project]
+name = "administracao-sistemas-operacionais"
+version = "1.0.0"
+description = "Material didático sequencial para Administração de Sistemas Operacionais"
+requires-python = ">=3.10"
+dependencies = [
+  "zensical==0.0.51"
+]

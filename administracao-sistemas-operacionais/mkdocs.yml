@@ -1,0 +1,142 @@
+site_name: Administração de Sistemas Operacionais
+site_description: Material didático sequencial para instalação, configuração, proteção e monitoramento de servidores.
+site_author: Lourenço José Cavalcante Neto
+site_url: https://lourencocavalcante.github.io/administracao-sistemas-operacionais/
+repo_url: https://github.com/lourencocavalcante/administracao-sistemas-operacionais
+repo_name: administracao-sistemas-operacionais
+edit_uri: edit/main/docs/
+
+copyright: >-
+  Material didático organizado por Lourenço José Cavalcante Neto.
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/images/logo.svg
+  favicon: assets/images/favicon.svg
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/weather-night
+        name: Usar tema escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/weather-sunny
+        name: Usar tema claro
+  icon:
+    repo: fontawesome/brands/github
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+
+nav:
+  - Início: index.md
+  - Organização:
+      - Visão geral: organizacao/index.md
+      - Plano de ensino: organizacao/plano-de-ensino.md
+      - Ambiente de laboratório: organizacao/ambiente-laboratorio.md
+      - Avaliação e evidências: organizacao/avaliacao.md
+  - Unidade I — Fundamentos:
+      - unidade-1/index.md
+      - 01. Sistemas de servidores: unidade-1/01-sistemas-servidores.md
+      - 02. Virtualização e laboratório: unidade-1/02-virtualizacao.md
+      - 03. Instalação Linux Server: unidade-1/03-instalacao-linux.md
+      - 04. Windows Server e PowerShell: unidade-1/04-windows-server.md
+  - Unidade II — GNU/Linux:
+      - unidade-2/index.md
+      - 05. Terminal, shell e ajuda: unidade-2/05-terminal-shell.md
+      - 06. Comandos fundamentais: unidade-2/06-comandos-fundamentais.md
+      - 07. Comandos avançados: unidade-2/07-comandos-avancados.md
+      - 08. Arquivos de texto e filtros: unidade-2/08-texto-filtros.md
+      - 09. Shell scripts: unidade-2/09-shell-scripts.md
+      - 10. Processos, serviços e logs: unidade-2/10-processos-servicos-logs.md
+  - Unidade III — Administração:
+      - unidade-3/index.md
+      - 11. Pacotes de software: unidade-3/11-pacotes.md
+      - 12. Usuários e permissões: unidade-3/12-usuarios-permissoes.md
+      - 13. Discos e sistemas de arquivos: unidade-3/13-discos-filesystems.md
+      - 14. Rede e diagnóstico: unidade-3/14-rede-diagnostico.md
+      - 15. Segurança e acesso remoto: unidade-3/15-seguranca-ssh.md
+      - 16. Monitoramento e backup: unidade-3/16-monitoramento-backup.md
+  - Unidade IV — Serviços:
+      - unidade-4/index.md
+      - 17. Servidor de impressão: unidade-4/17-impressao-cups.md
+      - 18. Servidor Web: unidade-4/18-servidor-web.md
+      - 19. FTP, FTPS e SFTP: unidade-4/19-ftp-sftp.md
+      - 20. Servidor NFS: unidade-4/20-nfs.md
+      - 21. Servidor Samba: unidade-4/21-samba.md
+      - 22. Integração e hardening: unidade-4/22-integracao-hardening.md
+  - Projeto final: projeto-final.md
+  - Referências:
+      - Guia rápido de comandos: referencias/guia-comandos.md
+      - Diagnóstico de incidentes: referencias/diagnostico-incidentes.md
+      - Bibliografia e links: referencias/bibliografia-links.md
+
+plugins:
+  - search:
+      lang: pt
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      title: Nesta aula
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/progresso.js
+
+extra:
+  generator: false
+  status:
+    new: Conteúdo novo
+    lab: Prática de laboratório
