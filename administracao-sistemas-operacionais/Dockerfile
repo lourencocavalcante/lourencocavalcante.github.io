@@ -1,7 +1,0 @@
-FROM python:3.12-slim
-WORKDIR /curso
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-EXPOSE 8000
-CMD ["zensical", "serve", "--dev-addr=0.0.0.0:8000"]

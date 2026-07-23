@@ -1,2 +1,0 @@
-@echo off
-zensical serve
